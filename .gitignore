@@ -23,3 +23,5 @@ go.work
 ## PYTHON
 .?venv/
 __pycache__
+
+.vscode
