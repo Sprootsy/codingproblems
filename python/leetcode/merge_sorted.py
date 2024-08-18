@@ -1,38 +1,26 @@
-# https://leetcode.com/problems/merge-sorted-array/?envType=study-plan-v2&envId=top-interview-150
-import math
 from typing import List
 
 
 class Solution:
 
-    def binary_insert(self, nums: List[int], x: int, l: int) -> List[int]:
-        low, high = 0, l
-        while low < high:
-            mid = int(math.floor((low + high) / 2))
-            if nums[mid] <= x:
+    def binarySearch(self, numbers: List[int], search: int, start: int) -> int:
+        l = len(numbers)
+        low, high = start, l - 1
+        while low <= high:
+            mid = (low + high) >> 1
+            cur = numbers[mid] 
+            if cur < search:
                 low = mid + 1
+            elif cur == search:
+                return mid
             else:
-                high = mid
-        
-        ins = x
-        for i in range(low, l + 1):
-            tmp = nums[i]
-            nums[i] = ins
-            ins = tmp
+                high = mid - 1
+        return -1
 
-        return nums
-
-
-    def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
-        """
-        Do not return anything, modify nums1 in-place instead.
-        """
-        l = m
-        for x in nums2:
-            self.binary_insert(nums1, x, l)
-            l += 1
-
-
-
-
-        
+    def twoSum(self, numbers: List[int], target: int) -> List[int]:
+        for i, n in enumerate(numbers):
+            need = (target - n)
+            found = self.binarySearch(numbers, need, i + 1)
+            if found > -1:
+                return [i + 1, found + 1]
+        return []

@@ -23,5 +23,6 @@ go.work
 ## PYTHON
 .?venv/
 __pycache__
+.pytest*
 
 .vscode
